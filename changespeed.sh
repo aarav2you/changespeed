@@ -5,7 +5,7 @@ usage="\nusage: $0 [-d] [value] [-a] [-g gpu_number]
 -g gpu_number: Apply the specified speed to the specified NVIDIA GPU
 value: The speed value to apply to the GPU(s). Must be a whole number within the range of 0 to 100 (inclusive)."
 num_gpus=$(lspci -k | grep -i "VGA" | grep -ci "nvidia")
-if ! [ -x "$(command -v nvidia-settings)" ]
+if [ -z "$(command -v nvidia-settings)" ]
 then
     printf "nvidia-settings not installed\n" >&2
 elif [ $# -eq 0 ]
